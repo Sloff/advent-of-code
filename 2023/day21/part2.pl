@@ -2,20 +2,10 @@ use strict;
 use warnings;
 use feature ":5.34";
 use FindBin;
-
 use lib "$FindBin::Bin/../../utils";
-
 use Utils;
 
-my $grid;
-
-while (<>) {
-	chomp;
-	push @$grid, [split //];
-}
-
-my $row_len = @$grid;
-my $col_len = @{$grid->[0]};
+my ($grid, $row_len, $col_len) = Utils::get_grid();
 
 my ($s_row, $s_col);
 

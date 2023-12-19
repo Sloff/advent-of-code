@@ -34,4 +34,27 @@ sub extrapolate_quadratic_from_3_points {
 	return $a * $x**2 + $x * $b + $c;
 }
 
+# get_grid($a): Turns an array of strings into a grid, or from std in if nothing is supplied
+sub get_grid {
+	my ($lines) = @_;
+
+	my $grid;
+
+	if (defined $lines) {
+		for my $line (@$lines) {
+			push @$grid, [split //, $line];
+		}
+	} else {
+		while (<>) {
+			chomp;
+			push @$grid, [split //];
+		}
+	}
+
+	my $row_len = @$grid;
+	my $col_len = @{$grid->[0]};
+
+	return $grid, $row_len, $col_len;
+}
+
 1;
